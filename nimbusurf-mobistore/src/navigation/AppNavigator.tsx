@@ -1,13 +1,11 @@
 import React from "react";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
 import HomeNavigator from "./HomeNavigator";
 import AddressNavigator from "./AddressNavigator";
 import LoginNavigator from "./LoginNavigator";
 import ProductListNavigator from "./ProductListNavigator";
 import MenuNavigator from "./MenuNavigator";
-
 import type { AppDrawerParamList } from "./types";
 
 const Drawer = createDrawerNavigator<AppDrawerParamList>();
@@ -42,7 +40,6 @@ export default function AppNavigator() {
             title: "Home",
           }}
         />
-
         <Drawer.Screen
           name="Categories"
           component={MenuNavigator}
@@ -51,7 +48,6 @@ export default function AppNavigator() {
             title: "Categories",
           }}
         />
-
         <Drawer.Screen
           name="ProductList"
           component={ProductListNavigator}
@@ -60,7 +56,6 @@ export default function AppNavigator() {
             title: "Products",
           }}
         />
-
         <Drawer.Screen
           name="Address"
           component={AddressNavigator}
@@ -69,7 +64,6 @@ export default function AppNavigator() {
             title: "Address",
           }}
         />
-
         <Drawer.Screen
           name="Login"
           component={LoginNavigator}

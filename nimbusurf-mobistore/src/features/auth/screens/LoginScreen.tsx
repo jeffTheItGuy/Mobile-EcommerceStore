@@ -11,14 +11,12 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
 import PhoneInput from "../components/PhoneInput";
 import OtpInput from "../components/OtpInput";
 import { useLogin } from "../hooks/useLogin";
 
 export default function LoginScreen() {
   const navigation = useNavigation<any>();
-
   const {
     phone,
     otp,
@@ -38,16 +36,9 @@ export default function LoginScreen() {
     }
 
     const success = await verifyOtp();
-
     if (success) {
-      /**
-       * Replace this with your real post-login navigation.
-       *
-       * Examples:
-       * navigation.navigate("Home");
-       * navigation.replace("Home");
-       */
-      navigation.navigate("Home");
+      // Navigate to the Drawer's Home route
+      navigation.navigate("HomePage");
     }
   };
 
@@ -66,7 +57,6 @@ export default function LoginScreen() {
             <Text style={styles.title}>
               Welcome to Nimbusurf Mobi Store
             </Text>
-
             <Text style={styles.subtitle}>
               Login or signup using your mobile number.
             </Text>
@@ -74,7 +64,6 @@ export default function LoginScreen() {
 
           <View style={styles.form}>
             <Text style={styles.label}>Mobile Number</Text>
-
             <PhoneInput
               value={phone}
               onChangeText={setPhone}
@@ -84,12 +73,10 @@ export default function LoginScreen() {
             {otpSent ? (
               <View style={styles.otpSection}>
                 <Text style={styles.label}>Enter OTP</Text>
-
                 <OtpInput
                   value={otp}
                   onChange={setOtp}
                 />
-
                 <Pressable
                   style={styles.resendButton}
                   onPress={resendOtp}
@@ -128,61 +115,50 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F8FAFC",
   },
-
   flex: {
     flex: 1,
   },
-
   scrollContent: {
     flexGrow: 1,
     padding: 20,
     justifyContent: "center",
   },
-
   header: {
     marginBottom: 24,
   },
-
   title: {
     fontSize: 26,
     fontWeight: "800",
     color: "#0F172A",
     lineHeight: 32,
   },
-
   subtitle: {
     marginTop: 8,
     fontSize: 14,
     color: "#64748B",
     lineHeight: 20,
   },
-
   form: {
     gap: 12,
   },
-
   label: {
     fontSize: 13,
     fontWeight: "600",
     color: "#334155",
     marginBottom: 6,
   },
-
   otpSection: {
     marginTop: 12,
   },
-
   resendButton: {
     marginTop: 12,
     alignSelf: "flex-start",
   },
-
   resendText: {
     fontSize: 13,
     fontWeight: "700",
     color: "#7C3AED",
   },
-
   continueButton: {
     marginTop: 20,
     backgroundColor: "#7C3AED",
@@ -191,11 +167,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   continueButtonDisabled: {
     opacity: 0.7,
   },
-
   continueButtonText: {
     color: "#FFFFFF",
     fontSize: 15,

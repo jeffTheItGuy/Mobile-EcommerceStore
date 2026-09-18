@@ -9,10 +9,8 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
 import { useCart } from "../../cart/hooks/useCart";
-import { useAddressStore } from "../../address/store/addressStore";
-
+import { useAddressStore } from "../../../stores/addressStore";
 import AddressSelection from "../components/AddressSelection";
 import PaymentSelection, {
   type PaymentMethod,
@@ -24,7 +22,6 @@ const formatCurrency = (value: number) => {
 
 export default function CheckoutScreen() {
   const navigation = useNavigation<any>();
-
   const [paymentMethod, setPaymentMethod] =
     useState<PaymentMethod>("card");
 
@@ -69,12 +66,10 @@ export default function CheckoutScreen() {
           },
         ]
       );
-
       return;
     }
 
     clearCart();
-
     navigation.navigate("CheckoutSuccess", {
       total,
       paymentMethod,
@@ -85,11 +80,9 @@ export default function CheckoutScreen() {
     return (
       <View style={styles.emptyContainer}>
         <Text style={styles.emptyTitle}>Your bag is empty</Text>
-
         <Text style={styles.emptySubtitle}>
           Add products before proceeding to checkout.
         </Text>
-
         <Pressable
           style={styles.emptyButton}
           onPress={() => navigation.goBack()}
@@ -107,21 +100,18 @@ export default function CheckoutScreen() {
       showsVerticalScrollIndicator={false}
     >
       <Text style={styles.sectionTitle}>Delivery Address</Text>
-
       <AddressSelection
         address={selectedAddress}
         onAddAddress={() => navigation.navigate("Address")}
       />
 
       <Text style={styles.sectionTitle}>Payment Method</Text>
-
       <PaymentSelection
         selected={paymentMethod}
         onSelect={setPaymentMethod}
       />
 
       <Text style={styles.sectionTitle}>Items</Text>
-
       <View style={styles.itemsCard}>
         {items.map((item) => (
           <View key={item.id} style={styles.itemRow}>
@@ -130,17 +120,14 @@ export default function CheckoutScreen() {
               style={styles.itemImage}
               resizeMode="contain"
             />
-
             <View style={styles.itemDetails}>
               <Text numberOfLines={2} style={styles.itemName}>
                 {item.name}
               </Text>
-
               <Text style={styles.itemMeta}>
                 Qty: {item.quantity}
               </Text>
             </View>
-
             <Text style={styles.itemPrice}>
               {formatCurrency(item.price * item.quantity)}
             </Text>
@@ -149,7 +136,6 @@ export default function CheckoutScreen() {
       </View>
 
       <Text style={styles.sectionTitle}>Price Details</Text>
-
       <View style={styles.priceCard}>
         <View style={styles.priceRow}>
           <Text style={styles.priceLabel}>Bag Total</Text>
@@ -157,23 +143,19 @@ export default function CheckoutScreen() {
             {formatCurrency(subtotal)}
           </Text>
         </View>
-
         <View style={styles.priceRow}>
           <Text style={styles.priceLabel}>Discount</Text>
           <Text style={styles.discountValue}>
             - {formatCurrency(discount)}
           </Text>
         </View>
-
         <View style={styles.priceRow}>
           <Text style={styles.priceLabel}>Shipping</Text>
           <Text style={styles.priceValue}>
             {shipping === 0 ? "Free" : formatCurrency(shipping)}
           </Text>
         </View>
-
         <View style={styles.divider} />
-
         <View style={styles.priceRow}>
           <Text style={styles.totalLabel}>Total Payable</Text>
           <Text style={styles.totalValue}>{formatCurrency(total)}</Text>
@@ -192,12 +174,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F8FAFC",
   },
-
   content: {
     padding: 16,
     paddingBottom: 48,
   },
-
   sectionTitle: {
     fontSize: 16,
     fontWeight: "700",
@@ -205,7 +185,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-
   itemsCard: {
     borderRadius: 16,
     borderWidth: 1,
@@ -213,7 +192,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     padding: 12,
   },
-
   itemRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -221,7 +199,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#F1F5F9",
   },
-
   itemImage: {
     width: 64,
     height: 72,
@@ -229,31 +206,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8FAFC",
     marginRight: 12,
   },
-
   itemDetails: {
     flex: 1,
     marginRight: 12,
   },
-
   itemName: {
     fontSize: 13,
     fontWeight: "600",
     color: "#0F172A",
     lineHeight: 18,
   },
-
   itemMeta: {
     marginTop: 5,
     fontSize: 12,
     color: "#64748B",
   },
-
   itemPrice: {
     fontSize: 13,
     fontWeight: "700",
     color: "#0F172A",
   },
-
   priceCard: {
     borderRadius: 16,
     borderWidth: 1,
@@ -261,48 +233,40 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     padding: 16,
   },
-
   priceRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
   },
-
   priceLabel: {
     fontSize: 13,
     color: "#475569",
   },
-
   priceValue: {
     fontSize: 13,
     fontWeight: "600",
     color: "#0F172A",
   },
-
   discountValue: {
     fontSize: 13,
     fontWeight: "600",
     color: "#10B981",
   },
-
   divider: {
     height: 1,
     backgroundColor: "#E2E8F0",
     marginVertical: 10,
   },
-
   totalLabel: {
     fontSize: 15,
     fontWeight: "700",
     color: "#0F172A",
   },
-
   totalValue: {
     fontSize: 15,
     fontWeight: "800",
     color: "#0F172A",
   },
-
   placeOrderButton: {
     marginTop: 24,
     backgroundColor: "#7C3AED",
@@ -311,13 +275,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   placeOrderButtonText: {
     color: "#FFFFFF",
     fontSize: 15,
     fontWeight: "700",
   },
-
   emptyContainer: {
     flex: 1,
     alignItems: "center",
@@ -325,20 +287,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8FAFC",
     padding: 24,
   },
-
   emptyTitle: {
     fontSize: 18,
     fontWeight: "700",
     color: "#0F172A",
   },
-
   emptySubtitle: {
     marginTop: 8,
     fontSize: 14,
     color: "#64748B",
     textAlign: "center",
   },
-
   emptyButton: {
     marginTop: 20,
     backgroundColor: "#0F172A",
@@ -346,7 +305,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
   },
-
   emptyButtonText: {
     color: "#FFFFFF",
     fontSize: 14,

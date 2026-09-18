@@ -3,15 +3,12 @@ import { StyleSheet, View } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import type { RouteProp } from "@react-navigation/native";
-
 import { COLORS } from "../../../constants";
 import ProductGallery from "../components/ProductGallery";
 import ProductInfo from "../components/ProductInfo";
 import ProductActions from "../components/ProductActions";
 import { useProduct } from "../hooks/useProduct";
-import type {
-  MenuAndProductListStackParamList,
-} from "../../../types/navigation";
+import type { MenuAndProductListStackParamList } from "../../../navigation/types";
 import type { ProductDetailParams } from "../../../types/product";
 
 type NavigationProp = NativeStackNavigationProp<
@@ -27,7 +24,6 @@ type RouteParams = RouteProp<
 export default function ProductDetailScreen() {
   const navigation = useNavigation<NavigationProp>();
   const route = useRoute<RouteParams>();
-
   const params = route.params as ProductDetailParams;
 
   const { product, discountValue, discountedPrice, originalPrice } =

@@ -1,13 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import {
-  HomeScreen,
-  CategoriesScreen,
-  CartScreen,
-} from "../screens";
-
+import HomeScreen from "../features/home/screens/HomeScreen";
+import CategoriesScreen from "../features/categories/screens/CategoriesScreen";
+import CartScreen from "../features/cart/screens/CartScreen";
 import type { HomeTabParamList } from "./types";
 
 const Tab = createBottomTabNavigator<HomeTabParamList>();
@@ -40,7 +36,6 @@ export default function HomeTabs() {
           ),
         }}
       />
-
       <Tab.Screen
         name="Category"
         component={CategoriesScreen}
@@ -55,7 +50,6 @@ export default function HomeTabs() {
           ),
         }}
       />
-
       <Tab.Screen
         name="Brand"
         component={HomeScreen}
@@ -70,7 +64,6 @@ export default function HomeTabs() {
           ),
         }}
       />
-
       <Tab.Screen
         name="Account"
         component={HomeScreen}
@@ -85,7 +78,6 @@ export default function HomeTabs() {
           ),
         }}
       />
-
       <Tab.Screen
         name="MyBag"
         component={CartScreen}

@@ -3,17 +3,14 @@ import { Pressable } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
 import HomeTabs from "./HomeTabs";
-
-import {
-  SplashScreen,
-  CategoriesScreen,
-  ProductListScreen,
-  ProductDetailScreen,
-  CartScreen,
-} from "../screens";
-
+import SplashScreen from "../features/splash/screens/SplashScreen";
+import CategoriesScreen from "../features/categories/screens/CategoriesScreen";
+import ProductListScreen from "../features/products/screens/ProductListScreen";
+import ProductDetailScreen from "../features/product/screens/ProductDetailScreen";
+import CartScreen from "../features/cart/screens/CartScreen";
+import CheckoutScreen from "../features/checkout/screens/CheckoutScreen";
+import CheckoutSuccessScreen from "../features/checkout/screens/CheckoutSuccessScreen";
 import type { HomeStackParamList } from "./types";
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -28,7 +25,6 @@ export default function HomeNavigator() {
           headerShown: false,
         }}
       />
-
       <Stack.Screen
         name="HomeTabs"
         component={HomeTabs}
@@ -71,7 +67,6 @@ export default function HomeNavigator() {
           ),
         })}
       />
-
       <Stack.Screen
         name="Category"
         component={CategoriesScreen}
@@ -79,7 +74,6 @@ export default function HomeNavigator() {
           title: "Categories",
         }}
       />
-
       <Stack.Screen
         name="ProductList"
         component={ProductListScreen}
@@ -87,7 +81,6 @@ export default function HomeNavigator() {
           title: route.params?.categoryType ?? "Products",
         })}
       />
-
       <Stack.Screen
         name="Product"
         component={ProductDetailScreen}
@@ -95,12 +88,26 @@ export default function HomeNavigator() {
           title: route.params?.name ?? "Product",
         })}
       />
-
       <Stack.Screen
         name="Cart"
         component={CartScreen}
         options={{
           title: "My Bag",
+        }}
+      />
+      <Stack.Screen
+        name="Checkout"
+        component={CheckoutScreen}
+        options={{
+          title: "Checkout",
+        }}
+      />
+      <Stack.Screen
+        name="CheckoutSuccess"
+        component={CheckoutSuccessScreen}
+        options={{
+          title: "Order Confirmed",
+          headerLeft: () => null,
         }}
       />
     </Stack.Navigator>

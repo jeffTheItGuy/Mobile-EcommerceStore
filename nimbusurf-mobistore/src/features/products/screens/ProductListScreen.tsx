@@ -8,14 +8,11 @@ import {
 import { useNavigation, useRoute } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import type { RouteProp } from "@react-navigation/native";
-
 import { COLORS, FONTS, SIZES } from "../../../constants";
 import ProductGrid from "../components/ProductGrid";
 import { useProducts } from "../hooks/useProducts";
 import type { Product } from "../../../types/product";
-import type {
-  MenuAndProductListStackParamList,
-} from "../../../types/navigation";
+import type { MenuAndProductListStackParamList } from "../../../navigation/types";
 
 type NavigationProp = NativeStackNavigationProp<
   MenuAndProductListStackParamList,
@@ -30,7 +27,6 @@ type RouteParams = RouteProp<
 export default function ProductListScreen() {
   const navigation = useNavigation<NavigationProp>();
   const route = useRoute<RouteParams>();
-
   const categoryType = route.params?.categoryType;
 
   const { products, isLoading, error, refetch } = useProducts(categoryType);

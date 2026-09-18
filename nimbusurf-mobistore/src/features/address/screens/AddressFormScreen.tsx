@@ -1,30 +1,23 @@
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
 import AddressForm from "../components/AddressForm";
 import { useAddressForm } from "../hooks/useAddressForm";
-import { useAddressStore } from "../store/addressStore";
-
-import type { Address } from "../../../types/address";
+import { useAddressStore } from "../../../stores/addressStore";
+import type { AddressInput } from "../../../stores/types";
 
 export default function AddressFormScreen() {
   const navigation = useNavigation<any>();
-
   const [isDefault, setIsDefault] = useState(false);
-
   const { addAddress } = useAddressStore();
 
   const { values, errors, handleChange, handleSubmit } = useAddressForm(
     (formValues) => {
-      const address: Address = {
-        id: `${Date.now()}`,
+      const addressInput: AddressInput = {
         ...formValues,
         isDefault,
       };
-
-      addAddress(address);
-
+      addAddress(addressInput);
       navigation.goBack();
     }
   );

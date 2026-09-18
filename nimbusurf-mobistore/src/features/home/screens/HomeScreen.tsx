@@ -7,23 +7,18 @@ import {
   Text,
   View,
 } from "react-native";
-
 import { useNavigation } from "@react-navigation/native";
-
 import { COLORS, SIZES } from "../../../constants";
-
 import {
   useHomeData,
   type HomeProduct,
 } from "../hooks/useHomeData";
-
 import TrendingSection from "../components/TrendingSection";
 import TrendingClothesSection from "../components/TrendingClothesSection";
 import RecentlyViewedSection from "../components/RecentlyViewedSection";
 
 export default function HomeScreen() {
   const navigation = useNavigation<any>();
-
   const {
     trending,
     trendingClothes,
@@ -95,12 +90,10 @@ export default function HomeScreen() {
       ) : null}
 
       <TrendingSection data={trending} />
-
       <TrendingClothesSection
         data={trendingClothes}
         onPressItem={openProduct}
       />
-
       <RecentlyViewedSection
         data={recentlyViewed}
         onPressItem={openProduct}
@@ -114,11 +107,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F8FAFC",
   },
-
   content: {
     paddingBottom: SIZES.padding * 2,
   },
-
   center: {
     flex: 1,
     alignItems: "center",
@@ -127,31 +118,26 @@ const styles = StyleSheet.create({
     gap: 12,
     padding: SIZES.padding,
   },
-
   loadingText: {
     color: COLORS.black,
     fontSize: 14,
     fontWeight: "600",
   },
-
   header: {
     paddingTop: SIZES.padding,
     paddingHorizontal: SIZES.padding,
     paddingBottom: SIZES.base,
   },
-
   headerTitle: {
     fontSize: 28,
     fontWeight: "900",
     color: COLORS.black,
   },
-
   headerSubtitle: {
     marginTop: 6,
     fontSize: 15,
     color: "#64748B",
   },
-
   errorBox: {
     marginHorizontal: SIZES.padding,
     marginTop: SIZES.base,
@@ -161,7 +147,6 @@ const styles = StyleSheet.create({
     borderColor: "#FECACA",
     padding: SIZES.base,
   },
-
   errorText: {
     color: "#B91C1C",
     fontSize: 13,

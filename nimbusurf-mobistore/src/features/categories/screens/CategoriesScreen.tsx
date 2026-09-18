@@ -2,11 +2,10 @@ import React, { useCallback, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-
 import { COLORS } from "../../../constants";
 import CategoryList from "../components/CategoryList";
 import type { Category } from "../../../types/product";
-import type { MenuAndProductListStackParamList } from "../../../types/navigation";
+import type { MenuAndProductListStackParamList } from "../../../navigation/types";
 
 type NavigationProp = NativeStackNavigationProp<
   MenuAndProductListStackParamList,
@@ -24,7 +23,6 @@ const CATEGORIES: Category[] = [
 
 export default function CategoriesScreen() {
   const navigation = useNavigation<NavigationProp>();
-
   const [categories] = useState<Category[]>(CATEGORIES);
 
   const handlePressCategory = useCallback(

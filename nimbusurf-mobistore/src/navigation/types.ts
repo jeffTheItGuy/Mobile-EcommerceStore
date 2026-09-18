@@ -12,6 +12,11 @@ export type ProductListParams = {
   categoryType?: string;
 };
 
+export type CheckoutSuccessParams = {
+  total: number;
+  paymentMethod?: string;
+};
+
 export type HomeTabParamList = {
   Home: undefined;
   Category: undefined;
@@ -27,6 +32,8 @@ export type HomeStackParamList = {
   ProductList: ProductListParams | undefined;
   Product: ProductParams;
   Cart: ProductParams | undefined;
+  Checkout: undefined;
+  CheckoutSuccess: CheckoutSuccessParams;
 };
 
 export type AddressStackParamList = {
@@ -43,12 +50,18 @@ export type MenuAndProductListStackParamList = {
   Product: ProductParams;
   Cart: ProductParams | undefined;
   Address: undefined;
+  Checkout: undefined;
+  CheckoutSuccess: CheckoutSuccessParams;
 };
 
 export type AppDrawerParamList = {
   HomePage: NavigatorScreenParams<HomeStackParamList> | undefined;
   Address: NavigatorScreenParams<AddressStackParamList> | undefined;
   Login: NavigatorScreenParams<LoginStackParamList> | undefined;
-  ProductList: NavigatorScreenParams<MenuAndProductListStackParamList> | undefined;
-  Categories: NavigatorScreenParams<MenuAndProductListStackParamList> | undefined;
+  ProductList:
+    | NavigatorScreenParams<MenuAndProductListStackParamList>
+    | undefined;
+  Categories:
+    | NavigatorScreenParams<MenuAndProductListStackParamList>
+    | undefined;
 };

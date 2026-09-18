@@ -3,15 +3,13 @@ import { Pressable } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import {
-  CategoriesScreen,
-  ProductListScreen,
-  ProductDetailScreen,
-  CartScreen,
-  AddressFormScreen,
-} from "../screens";
-
+import CategoriesScreen from "../features/categories/screens/CategoriesScreen";
+import ProductListScreen from "../features/products/screens/ProductListScreen";
+import ProductDetailScreen from "../features/product/screens/ProductDetailScreen";
+import CartScreen from "../features/cart/screens/CartScreen";
+import AddressFormScreen from "../features/address/screens/AddressFormScreen";
+import CheckoutScreen from "../features/checkout/screens/CheckoutScreen";
+import CheckoutSuccessScreen from "../features/checkout/screens/CheckoutSuccessScreen";
 import type { MenuAndProductListStackParamList } from "./types";
 
 const Stack =
@@ -62,7 +60,6 @@ export default function MenuNavigator() {
           ),
         })}
       />
-
       <Stack.Screen
         name="ProductList"
         component={ProductListScreen}
@@ -70,7 +67,6 @@ export default function MenuNavigator() {
           title: route.params?.categoryType ?? "Products",
         })}
       />
-
       <Stack.Screen
         name="Product"
         component={ProductDetailScreen}
@@ -78,7 +74,6 @@ export default function MenuNavigator() {
           title: route.params?.name ?? "Product",
         })}
       />
-
       <Stack.Screen
         name="Cart"
         component={CartScreen}
@@ -86,12 +81,26 @@ export default function MenuNavigator() {
           title: "My Bag",
         }}
       />
-
       <Stack.Screen
         name="Address"
         component={AddressFormScreen}
         options={{
           title: "Address",
+        }}
+      />
+      <Stack.Screen
+        name="Checkout"
+        component={CheckoutScreen}
+        options={{
+          title: "Checkout",
+        }}
+      />
+      <Stack.Screen
+        name="CheckoutSuccess"
+        component={CheckoutSuccessScreen}
+        options={{
+          title: "Order Confirmed",
+          headerLeft: () => null,
         }}
       />
     </Stack.Navigator>

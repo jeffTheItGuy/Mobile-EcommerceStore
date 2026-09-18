@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Nimbusurf Mobi Store",
+    "slug": "nimbusurf-mobistore",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "nimbusurfmobistore",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#00509d",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.nimbusurf.mobistore",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.nimbusurf.mobistore"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "YOUR_EAS_PROJECT_ID"
+      }
+    }
+  }
+}

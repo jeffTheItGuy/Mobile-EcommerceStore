@@ -1,0 +1,39 @@
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Environment
+.env
+.env.local
+.env.production
+.env.development.local
+
+# Native generated folders
+# If you intentionally customize native code, you may remove these two lines.
+android/
+ios/
+
+# macOS
+.DS_Store
+
+# logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# TypeScript
+*.tsbuildinfo
+
+# secrets
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+tmp/

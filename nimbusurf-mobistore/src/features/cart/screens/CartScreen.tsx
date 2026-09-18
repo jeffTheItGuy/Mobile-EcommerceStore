@@ -1,60 +1,37 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import {
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 import CartItemList from "../components/CartItemList";
 import CartTotalCard from "../components/CartTotalCard";
 import { useCart } from "../hooks/useCart";
 
 export default function CartScreen() {
   const navigation = useNavigation<any>();
-  const route = useRoute<any>();
   const {
     items,
     subtotal,
     discount,
     shipping,
     total,
-    addItem,
     removeItem,
     increaseQuantity,
     decreaseQuantity,
     clearCart,
   } = useCart();
 
-  const hasAddedRouteProduct = useRef(false);
-
-  /**
-   * Supports navigation pattern:
-   * navigation.navigate("Cart", { id, name, img, type, price })
-   */
-  useEffect(() => {
-    const params = route.params;
-    if (params?.id && !hasAddedRouteProduct.current) {
-      addItem({
-        id: params.id,
-        name: params.name || "Product",
-        img: params.img || "",
-        type: params.type,
-        price: params.price || 0,
-        quantity: 1,
-      });
-      hasAddedRouteProduct.current = true;
-    }
-  }, [route.params, addItem]);
-
   const handleCheckout = () => {
     navigation.navigate("Checkout");
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}

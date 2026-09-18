@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import type { CartItem, ProductInput } from "./types";
 import { normalizeProduct } from "./utils";
 
@@ -21,11 +20,9 @@ export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       items: [],
-
       addItem: (product, quantity = 1) =>
         set((state) => {
           const normalizedProduct = normalizeProduct(product);
-
           const existingItem = state.items.find(
             (item) => item.id === normalizedProduct.id
           );
@@ -34,10 +31,7 @@ export const useCartStore = create<CartState>()(
             return {
               items: state.items.map((item) =>
                 item.id === normalizedProduct.id
-                  ? {
-                      ...item,
-                      quantity: item.quantity + quantity,
-                    }
+                  ? { ...item, quantity: item.quantity + quantity }
                   : item
               ),
             };
@@ -45,44 +39,31 @@ export const useCartStore = create<CartState>()(
 
           return {
             items: [
-              {
-                ...normalizedProduct,
-                quantity,
-              },
+              { ...normalizedProduct, quantity },
               ...state.items,
             ],
           };
         }),
-
       removeItem: (id) =>
         set((state) => ({
           items: state.items.filter((item) => item.id !== id),
         })),
-
       increaseQuantity: (id) =>
         set((state) => ({
           items: state.items.map((item) =>
             item.id === id
-              ? {
-                  ...item,
-                  quantity: item.quantity + 1,
-                }
+              ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
         })),
-
       decreaseQuantity: (id) =>
         set((state) => ({
           items: state.items.map((item) =>
             item.id === id
-              ? {
-                  ...item,
-                  quantity: Math.max(1, item.quantity - 1),
-                }
+              ? { ...item, quantity: Math.max(1, item.quantity - 1) }
               : item
           ),
         })),
-
       clearCart: () =>
         set({
           items: [],
@@ -107,7 +88,7 @@ export const selectCartSubtotal = (state: CartState) =>
   );
 
 export const selectCartDiscount = (state: CartState) =>
-  Math.round(selectCartSubtotal(state) * 0.1);
+  Number((selectCartSubtotal(state) * 0.1).toFixed(2));
 
 export const selectCartShipping = (state: CartState) =>
   selectCartSubtotal(state) > 0 ? 0 : 0;
@@ -128,8 +109,7 @@ export function useCartTotals() {
       (total, item) => total + item.price * item.quantity,
       0
     );
-
-    const discount = Math.round(subtotal * 0.1);
+    const discount = Number((subtotal * 0.1).toFixed(2));
     const shipping = subtotal > 0 ? 0 : 0;
     const total = Math.max(subtotal - discount + shipping, 0);
     const count = items.reduce(

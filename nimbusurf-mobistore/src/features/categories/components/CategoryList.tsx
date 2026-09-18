@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-import { COLORS, FONTS, SIZES, icons } from "../../../constants";
-import type { Category } from "../../../types/product";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { COLORS, FONTS, SIZES } from "../../../constants";
+import type { Category } from "../../../types/category";
 
 type CategoryListProps = {
   data: Category[];
@@ -26,13 +26,22 @@ function CategoryItem({
   return (
     <TouchableOpacity onPress={onPress} style={styles.itemContainer}>
       <View style={styles.itemRow}>
+        <Image
+          source={{ uri: item.img }}
+          style={styles.thumbnail}
+          resizeMode="cover"
+        />
         <View style={styles.itemLabelWrapper}>
           <Text style={styles.itemLabel}>{item.name}</Text>
+          <Text style={styles.subcategoryPreview}>
+            {item.subcategories.map((s) => s.name).join(" · ")}
+          </Text>
         </View>
-
-        <View style={styles.itemArrowWrapper}>
-          <Image source={icons.right_arrow} style={styles.itemArrow} />
-        </View>
+        <MaterialCommunityIcons
+          name="chevron-right"
+          size={22}
+          color={COLORS.light2}
+        />
       </View>
     </TouchableOpacity>
   );
@@ -45,12 +54,9 @@ export default function CategoryList({
   return (
     <FlatList
       data={data}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <CategoryItem
-          item={item}
-          onPress={() => onPressCategory(item)}
-        />
+        <CategoryItem item={item} onPress={() => onPressCategory(item)} />
       )}
       contentContainerStyle={styles.listContent}
     />
@@ -65,30 +71,32 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.base,
     marginVertical: 4,
     backgroundColor: COLORS.white,
-    borderRadius: 8,
+    borderRadius: 12,
     ...FONTS.box_shadow,
   },
   itemRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    padding: 20,
-    minHeight: 60,
+    padding: 14,
+    minHeight: 72,
+    gap: 12,
+  },
+  thumbnail: {
+    width: 56,
+    height: 56,
+    borderRadius: 12,
+    backgroundColor: "#F1F5F9",
   },
   itemLabelWrapper: {
     flex: 1,
-    alignItems: "flex-start",
+    gap: 3,
   },
   itemLabel: {
     color: COLORS.cat_title_color,
     ...FONTS.cat_title_text,
   },
-  itemArrowWrapper: {
-    alignItems: "flex-end",
-  },
-  itemArrow: {
-    height: 20,
-    width: 20,
-    tintColor: COLORS.light2,
+  subcategoryPreview: {
+    fontSize: 12,
+    color: "#64748B",
   },
 });

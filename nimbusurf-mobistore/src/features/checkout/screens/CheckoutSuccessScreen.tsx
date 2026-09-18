@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 const formatCurrency = (value: number) => {
-  return `₹${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+  return `$${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };
 
 export default function CheckoutSuccessScreen() {

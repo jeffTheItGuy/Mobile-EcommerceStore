@@ -6,9 +6,10 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TextStyle,
 } from "react-native";
-
-import { COLORS, FONTS, SIZES, icons } from "../../../constants";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { COLORS, SIZES } from "../../../constants";
 import type { Product } from "../../../types/product";
 
 type ProductGridProps = {
@@ -25,17 +26,17 @@ function ProductGridItem({
 }) {
   return (
     <TouchableOpacity style={styles.gridItem} onPress={onPress}>
-      {/* Offer Badge */}
-      <View style={styles.offerBadge}>
-        <Image
-          source={icons.discount_tag}
-          resizeMode="contain"
-          style={styles.offerBadgeImage}
-        />
-        <Text style={styles.offerBadgeText}>{item.offer}</Text>
-      </View>
+      {item.offer ? (
+        <View style={styles.offerBadge}>
+          <MaterialCommunityIcons
+            name="tag"
+            size={12}
+            color={COLORS.white}
+          />
+          <Text style={styles.offerBadgeText}>{item.offer}</Text>
+        </View>
+      ) : null}
 
-      {/* Product Image */}
       <View style={styles.imageWrapper}>
         <Image
           source={{ uri: item.img }}
@@ -44,7 +45,6 @@ function ProductGridItem({
         />
       </View>
 
-      {/* Product Info */}
       <View style={styles.infoWrapper}>
         <Text style={styles.brandName} numberOfLines={1}>
           {item.brand_name}
@@ -52,13 +52,21 @@ function ProductGridItem({
         <Text style={styles.productName} numberOfLines={2}>
           {item.name}
         </Text>
-        <Text style={styles.productPrice}>₹{item.price}</Text>
+        <Text style={styles.productPrice}>
+          {`$${Number(item.price || 0).toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}`}
+        </Text>
       </View>
     </TouchableOpacity>
   );
 }
 
-export default function ProductGrid({ data, onPressProduct }: ProductGridProps) {
+export default function ProductGrid({
+  data,
+  onPressProduct,
+}: ProductGridProps) {
   return (
     <FlatList
       data={data}
@@ -93,17 +101,17 @@ const styles = StyleSheet.create({
     zIndex: 20,
     flexDirection: "row",
     alignItems: "center",
-  },
-  offerBadgeImage: {
-    height: 20,
-    width: 60,
-    position: "absolute",
+    gap: 4,
+    backgroundColor: "#DA1C4C",
+    borderTopRightRadius: 999,
+    borderBottomRightRadius: 999,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
   offerBadgeText: {
     color: COLORS.white,
-    ...FONTS.prod_list_offer_title_text,
-    paddingLeft: 8,
-    zIndex: 20,
+    fontSize: 12,
+    fontWeight: "700" as TextStyle["fontWeight"],
   },
   imageWrapper: {
     flex: 7,
@@ -122,16 +130,19 @@ const styles = StyleSheet.create({
   },
   brandName: {
     color: COLORS.cat_title_color,
-    ...FONTS.prod_list_brand_title_text,
+    fontSize: 13,
+    fontWeight: "700" as TextStyle["fontWeight"],
   },
   productName: {
     color: COLORS.black,
-    ...FONTS.prod_list_title_text,
+    fontSize: 14,
+    fontWeight: "500" as TextStyle["fontWeight"],
     marginTop: 2,
   },
   productPrice: {
     color: COLORS.cat_title_color,
-    ...FONTS.prod_list_price_text,
+    fontSize: 14,
+    fontWeight: "800" as TextStyle["fontWeight"],
     marginTop: 2,
   },
 });

@@ -17,7 +17,7 @@ import PaymentSelection, {
 } from "../components/PaymentSelection";
 
 const formatCurrency = (value: number) => {
-  return `₹${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+  return `$${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };
 
 export default function CheckoutScreen() {

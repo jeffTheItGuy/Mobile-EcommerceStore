@@ -1,7 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
-
-import { ProductsDummyData } from "../../../data";
+import { ProductsData } from "../../../data";
 import type { Product } from "../../../types/product";
+
+/**
+ * Maps category display names to product `type` values.
+ */
+const CATEGORY_TYPE_MAP: Record<string, string> = {
+  "Electronics": "electronics",
+  "Apparel & Fashion": "apparel",
+  "Home & Living": "home-living",
+  "Health & Beauty": "health-beauty",
+  "Sports & Outdoors": "sports-outdoors",
+  "Deals & Clearance": "deals",
+};
 
 type UseProductsReturn = {
   products: Product[];
@@ -20,20 +31,23 @@ export function useProducts(categoryType?: string): UseProductsReturn {
     setError(null);
 
     try {
-      // Simulate API call — replace with real fetch later
+      // Simulate network delay
       await new Promise((resolve) => setTimeout(resolve, 300));
 
-      let result: Product[] = ProductsDummyData as Product[];
+      if (!categoryType) {
+        // No category selected → return all products
+        setProducts(ProductsData);
+      } else {
+        // Map the display name to the internal type key
+        const typeKey =
+          CATEGORY_TYPE_MAP[categoryType] ??
+          categoryType.toLowerCase().replace(/[^a-z-]/g, "-");
 
-      if (categoryType) {
-        result = result.filter(
-          (item) =>
-            item.type.toLowerCase() === categoryType.toLowerCase() ||
-            categoryType.toLowerCase().includes(item.type.toLowerCase())
+        const filtered = ProductsData.filter(
+          (product) => product.type === typeKey
         );
+        setProducts(filtered);
       }
-
-      setProducts(result);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Failed to load products"

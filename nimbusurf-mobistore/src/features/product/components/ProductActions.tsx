@@ -1,16 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
-import { COLORS, FONTS, SIZES } from "../../../constants";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { COLORS, FONTS } from "../../../constants";
 
 type ProductActionsProps = {
   onAddToBag: () => void;
-  onBuyNow: () => void;
+  isWishlisted: boolean;
+  onToggleWishlist: () => void;
 };
 
 export default function ProductActions({
   onAddToBag,
-  onBuyNow,
+  isWishlisted,
+  onToggleWishlist,
 }: ProductActionsProps) {
   return (
     <View style={styles.actionsContainer}>
@@ -21,12 +23,14 @@ export default function ProductActions({
         </TouchableOpacity>
       </View>
 
-      {/* Buy Now */}
-      <View style={styles.actionButtonWrapper}>
-        <TouchableOpacity style={styles.buyNowButton} onPress={onBuyNow}>
-          <Text style={styles.buyNowText}>BUY NOW</Text>
-        </TouchableOpacity>
-      </View>
+      {/* Wishlist */}
+      <TouchableOpacity style={styles.wishlistButton} onPress={onToggleWishlist}>
+        <MaterialCommunityIcons
+          name={isWishlisted ? "heart" : "heart-outline"}
+          size={28}
+          color={isWishlisted ? "#DA1C4C" : COLORS.black}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 70,
     ...FONTS.box_shadow,
+    backgroundColor: "#FFFFFF",
   },
   actionButtonWrapper: {
     flex: 1,
@@ -53,14 +58,13 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     ...FONTS.big_button_text,
   },
-  buyNowButton: {
-    flex: 1,
-    backgroundColor: "#DA1C4C",
+  wishlistButton: {
+    width: 70,
+    height: "100%",
+    backgroundColor: "#fafafa",
     alignItems: "center",
     justifyContent: "center",
-  },
-  buyNowText: {
-    color: COLORS.white,
-    ...FONTS.big_button_text,
+    borderLeftWidth: 1,
+    borderLeftColor: "#E2E8F0",
   },
 });

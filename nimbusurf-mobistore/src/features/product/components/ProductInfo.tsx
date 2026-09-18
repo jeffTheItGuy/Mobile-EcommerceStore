@@ -24,7 +24,7 @@ export default function ProductInfo({
           <Text style={styles.productName}>{name}</Text>
         </View>
         <View style={styles.rightColumn}>
-          <Text style={styles.productPrice}>₹{price}</Text>
+          <Text style={styles.productPrice}>${price}</Text>
         </View>
       </View>
 
@@ -34,7 +34,7 @@ export default function ProductInfo({
           <Text style={styles.productDescription}>short description</Text>
         </View>
         <View style={styles.rightColumn}>
-          <Text style={styles.discountText}>({discountValue > 0 ? `₹${discountValue} off` : "0%"})</Text>
+          <Text style={styles.discountText}>({discountValue > 0 ? `$${discountValue} off` : "0%"})</Text>
         </View>
       </View>
     </View>

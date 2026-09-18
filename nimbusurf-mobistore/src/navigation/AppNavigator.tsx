@@ -1,14 +1,11 @@
 import React from "react";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import HomeNavigator from "./HomeNavigator";
-import AddressNavigator from "./AddressNavigator";
-import LoginNavigator from "./LoginNavigator";
-import ProductListNavigator from "./ProductListNavigator";
-import MenuNavigator from "./MenuNavigator";
-import type { AppDrawerParamList } from "./types";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Drawer = createDrawerNavigator<AppDrawerParamList>();
+import SplashScreen from "../features/splash/screens/SplashScreen";
+import MainTabs from "./MainTabs";
+
+const RootStack = createNativeStackNavigator();
 
 const theme = {
   ...DefaultTheme,
@@ -21,58 +18,19 @@ const theme = {
 export default function AppNavigator() {
   return (
     <NavigationContainer theme={theme}>
-      <Drawer.Navigator
-        initialRouteName="HomePage"
-        screenOptions={{
-          drawerActiveTintColor: "#7C3AED",
-          drawerInactiveTintColor: "#0F172A",
-          drawerLabelStyle: {
-            fontSize: 14,
-            fontWeight: "600",
-          },
-        }}
-      >
-        <Drawer.Screen
-          name="HomePage"
-          component={HomeNavigator}
-          options={{
-            drawerLabel: "Home",
-            title: "Home",
-          }}
+      <RootStack.Navigator initialRouteName="Splash">
+        <RootStack.Screen
+          name="Splash"
+          component={SplashScreen}
+          options={{ headerShown: false }}
         />
-        <Drawer.Screen
-          name="Categories"
-          component={MenuNavigator}
-          options={{
-            drawerLabel: "Categories",
-            title: "Categories",
-          }}
+
+        <RootStack.Screen
+          name="HomeTabs"
+          component={MainTabs}
+          options={{ headerShown: false }}
         />
-        <Drawer.Screen
-          name="ProductList"
-          component={ProductListNavigator}
-          options={{
-            drawerLabel: "Products",
-            title: "Products",
-          }}
-        />
-        <Drawer.Screen
-          name="Address"
-          component={AddressNavigator}
-          options={{
-            drawerLabel: "Address",
-            title: "Address",
-          }}
-        />
-        <Drawer.Screen
-          name="Login"
-          component={LoginNavigator}
-          options={{
-            drawerLabel: "Login",
-            title: "Login",
-          }}
-        />
-      </Drawer.Navigator>
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }

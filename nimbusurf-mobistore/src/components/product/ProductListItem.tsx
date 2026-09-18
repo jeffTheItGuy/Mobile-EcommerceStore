@@ -29,7 +29,7 @@ const formatCurrency = (price: number | string) => {
       ? price
       : Number(String(price).replace(/[^0-9.]/g, ""));
 
-  return `₹${Number(parsed || 0).toLocaleString("en-IN")}`;
+  return `$${Number(parsed || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 };
 
 export default function ProductListItem({

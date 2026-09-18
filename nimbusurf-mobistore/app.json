@@ -21,6 +21,11 @@
       "eas": {
         "projectId": "YOUR_EAS_PROJECT_ID"
       }
-    }
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-font",
+      "expo-status-bar"
+    ]
   }
 }

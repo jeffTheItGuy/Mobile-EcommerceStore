@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useCallback } from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { COLORS } from "../../../constants";
 import CategoryList from "../components/CategoryList";
-import type { Category } from "../../../types/product";
+import { useCategories } from "../hooks/useCategories";
+import type { Category } from "../../../types/category";
 import type { MenuAndProductListStackParamList } from "../../../navigation/types";
 
 type NavigationProp = NativeStackNavigationProp<
@@ -12,18 +13,9 @@ type NavigationProp = NativeStackNavigationProp<
   "Category"
 >;
 
-const CATEGORIES: Category[] = [
-  { id: 1, name: "Women's Fashion", bgColor: "#BF012C" },
-  { id: 2, name: "Men's Fashion", bgColor: "#BF012C" },
-  { id: 3, name: "Kids' Fashion", bgColor: "#BF012C" },
-  { id: 4, name: "Beauty", bgColor: "#BF012C" },
-  { id: 5, name: "Jewellery", bgColor: "#BF012C" },
-  { id: 6, name: "Home Furnishings", bgColor: "#BF012C" },
-];
-
 export default function CategoriesScreen() {
   const navigation = useNavigation<NavigationProp>();
-  const [categories] = useState<Category[]>(CATEGORIES);
+  const { categories, isLoading, error } = useCategories();
 
   const handlePressCategory = useCallback(
     (category: Category) => {
@@ -34,9 +26,28 @@ export default function CategoriesScreen() {
     [navigation]
   );
 
+  if (isLoading) {
+    return (
+      <View style={styles.center}>
+        <ActivityIndicator size="large" color={COLORS.black} />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.center}>
+        <Text style={styles.errorText}>{error}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <CategoryList data={categories} onPressCategory={handlePressCategory} />
+      <CategoryList
+        data={categories}
+        onPressCategory={handlePressCategory}
+      />
     </View>
   );
 }
@@ -45,5 +56,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
+  },
+  center: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: COLORS.white,
+    padding: 24,
+  },
+  errorText: {
+    color: COLORS.black,
+    fontSize: 14,
+    textAlign: "center",
   },
 });

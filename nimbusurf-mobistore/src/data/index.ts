@@ -1,2 +1,3 @@
-export { TrendingDummyData } from "./TrendingDummyData";
-export { ProductsDummyData } from "./ProductsDummyData";
+export { CategoriesData } from "./CategoriesData";
+export { ProductsData } from "./ProductsData";
+export { TrendingData } from "./TrendingData";

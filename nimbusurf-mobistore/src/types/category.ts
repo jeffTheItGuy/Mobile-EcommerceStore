@@ -1,6 +1,11 @@
-export type Category = {
-  id: number | string;
+export type Subcategory = {
+  id: string;
   name: string;
-  bgColor?: string;
-  icon?: string;
+};
+
+export type Category = {
+  id: string;
+  name: string;
+  img: string;
+  subcategories: Subcategory[];
 };

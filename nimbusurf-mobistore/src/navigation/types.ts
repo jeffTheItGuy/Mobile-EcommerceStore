@@ -1,5 +1,6 @@
 import type { NavigatorScreenParams } from "@react-navigation/native";
 
+// ─── Shared Param Shapes ──────────────────────────────────────────
 export type ProductParams = {
   id: string | number;
   name: string;
@@ -17,51 +18,53 @@ export type CheckoutSuccessParams = {
   paymentMethod?: string;
 };
 
-export type HomeTabParamList = {
-  Home: undefined;
-  Category: undefined;
-  Brand: undefined;
-  Account: undefined;
-  MyBag: undefined;
-};
-
+// ─── Home Stack ───────────────────────────────────────────────────
 export type HomeStackParamList = {
-  Splashscreen: undefined;
-  HomeTabs: NavigatorScreenParams<HomeTabParamList> | undefined;
-  Category: undefined;
+  Home: undefined;
   ProductList: ProductListParams | undefined;
   Product: ProductParams;
+};
+
+// ─── Categories Stack ─────────────────────────────────────────────
+export type CategoriesStackParamList = {
+  Categories: undefined;
+  ProductList: ProductListParams | undefined;
+  Product: ProductParams;
+};
+
+// ─── Wishlist Stack ───────────────────────────────────────────────
+export type WishlistStackParamList = {
+  Wishlist: undefined;
+  Product: ProductParams;
+};
+
+// ─── Cart Stack ───────────────────────────────────────────────────
+export type CartStackParamList = {
   Cart: ProductParams | undefined;
   Checkout: undefined;
   CheckoutSuccess: CheckoutSuccessParams;
 };
 
-export type AddressStackParamList = {
-  Address: undefined;
-};
-
-export type LoginStackParamList = {
+// ─── Account Stack ────────────────────────────────────────────────
+export type AccountStackParamList = {
   Login: undefined;
-};
-
-export type MenuAndProductListStackParamList = {
-  Category: undefined;
-  ProductList: ProductListParams | undefined;
-  Product: ProductParams;
-  Cart: ProductParams | undefined;
   Address: undefined;
-  Checkout: undefined;
-  CheckoutSuccess: CheckoutSuccessParams;
 };
 
-export type AppDrawerParamList = {
-  HomePage: NavigatorScreenParams<HomeStackParamList> | undefined;
-  Address: NavigatorScreenParams<AddressStackParamList> | undefined;
-  Login: NavigatorScreenParams<LoginStackParamList> | undefined;
-  ProductList:
-    | NavigatorScreenParams<MenuAndProductListStackParamList>
-    | undefined;
-  Categories:
-    | NavigatorScreenParams<MenuAndProductListStackParamList>
-    | undefined;
+// ─── Root Tab Navigator ───────────────────────────────────────────
+export type MainTabParamList = {
+  HomeTab: NavigatorScreenParams<HomeStackParamList> | undefined;
+  CategoriesTab: NavigatorScreenParams<CategoriesStackParamList> | undefined;
+  WishlistTab: NavigatorScreenParams<WishlistStackParamList> | undefined;
+  CartTab: NavigatorScreenParams<CartStackParamList> | undefined;
+  AccountTab: NavigatorScreenParams<AccountStackParamList> | undefined;
 };
+
+// ─── Root Stack ───────────────────────────────────────────────────
+export type RootStackParamList = {
+  Splash: undefined;
+  HomeTabs: NavigatorScreenParams<MainTabParamList> | undefined;
+};
+
+// ─── Legacy alias ─────────────────────────────────────────────────
+export type MenuAndProductListStackParamList = CategoriesStackParamList;

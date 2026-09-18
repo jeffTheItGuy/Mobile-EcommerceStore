@@ -12,21 +12,18 @@ export type AddToCartProduct = {
 };
 
 const parsePrice = (price: number | string): number => {
-  if (typeof price === "number") {
-    return Math.round(price);
-  }
+  if (typeof price === "number") return Number(price.toFixed(2));
   const cleaned = String(price).replace(/[^0-9.]/g, "");
   const parsed = Number(cleaned);
-  if (!Number.isFinite(parsed)) {
-    return 0;
-  }
-  return Math.round(parsed);
+  if (!Number.isFinite(parsed)) return 0;
+  return Number(parsed.toFixed(2));
 };
 
 export const formatCurrency = (value: number): string => {
-  return `₹${value
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+  return `$${Number(value || 0).toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
 };
 
 export function useCart() {
@@ -60,11 +57,7 @@ export function useCart() {
     }, 0);
   }, [items]);
 
-  /**
-   * Sample discount logic.
-   * Replace this with your real coupon/pricing logic later.
-   */
-  const discount = Math.round(subtotal * 0.1);
+  const discount = Number((subtotal * 0.1).toFixed(2));
   const shipping = subtotal > 0 ? 0 : 0;
   const total = Math.max(subtotal - discount + shipping, 0);
 

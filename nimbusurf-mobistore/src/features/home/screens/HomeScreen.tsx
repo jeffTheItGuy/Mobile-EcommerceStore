@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS, SIZES } from "../../../constants";
 import {
@@ -27,7 +28,6 @@ export default function HomeScreen() {
     error,
     refetch,
   } = useHomeData();
-
   const [refreshing, setRefreshing] = useState(false);
 
   const handleRefresh = useCallback(async () => {
@@ -64,45 +64,51 @@ export default function HomeScreen() {
   }
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.content}
-      showsVerticalScrollIndicator={false}
-      refreshControl={
-        <RefreshControl
-          refreshing={refreshing}
-          onRefresh={handleRefresh}
-          colors={[COLORS.black]}
-        />
-      }
-    >
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Nimbusurf Store</Text>
-        <Text style={styles.headerSubtitle}>
-          Discover premium fashion drops
-        </Text>
-      </View>
-
-      {error ? (
-        <View style={styles.errorBox}>
-          <Text style={styles.errorText}>{error}</Text>
+    <SafeAreaView style={styles.safeArea} edges={["top"]}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
+            colors={[COLORS.black]}
+          />
+        }
+      >
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Nimbusurf Store</Text>
+          <Text style={styles.headerSubtitle}>
+            Discover premium fashion drops
+          </Text>
         </View>
-      ) : null}
 
-      <TrendingSection data={trending} />
-      <TrendingClothesSection
-        data={trendingClothes}
-        onPressItem={openProduct}
-      />
-      <RecentlyViewedSection
-        data={recentlyViewed}
-        onPressItem={openProduct}
-      />
-    </ScrollView>
+        {error ? (
+          <View style={styles.errorBox}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
+        ) : null}
+
+        <TrendingSection data={trending} />
+        <TrendingClothesSection
+          data={trendingClothes}
+          onPressItem={openProduct}
+        />
+        <RecentlyViewedSection
+          data={recentlyViewed}
+          onPressItem={openProduct}
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#F8FAFC",
+  },
   container: {
     flex: 1,
     backgroundColor: "#F8FAFC",

@@ -18,14 +18,14 @@ export type ProductDetailParams = {
   price: number | string;
 };
 
-export type TrendingShoe = {
+export type TrendingProduct = {
   id: number;
   name: string;
-  img: any; // `require()` returns a number locally, or string for remote URLs
+  img: any;
   bgColor: string;
   type: string;
   price: string;
-  sizes: number[];
+  discount?: string;
 };
 
 export type HomeProduct = {

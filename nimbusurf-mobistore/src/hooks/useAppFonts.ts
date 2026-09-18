@@ -1,15 +1,17 @@
-import { useFonts } from "expo-font";
+import {
+  useFonts,
+  Rubik_400Regular,
+  Rubik_500Medium,
+  Rubik_600SemiBold,
+  Rubik_700Bold,
+} from "@expo-google-fonts/rubik";
 
 export function useAppFonts() {
   const [fontsLoaded, error] = useFonts({
-    "CarmenSans-Thin": require("../../assets/fonts/CarmenSans-Thin.ttf"),
-    "CarmenSans-Regular": require("../../assets/fonts/CarmenSans-Regular.ttf"),
-    "CarmenSans-SemiBold": require("../../assets/fonts/CarmenSans-SemiBold.ttf"),
-
-    "Rubik-Regular": require("../../assets/fonts/Rubik-Regular.ttf"),
-    "Rubik-Medium": require("../../assets/fonts/Rubik-Medium.ttf"),
-    "Rubik-SemiBold": require("../../assets/fonts/Rubik-SemiBold.ttf"),
-    "Rubik-Bold": require("../../assets/fonts/Rubik-Bold.ttf"),
+    "Rubik-Regular": Rubik_400Regular,
+    "Rubik-Medium": Rubik_500Medium,
+    "Rubik-SemiBold": Rubik_600SemiBold,
+    "Rubik-Bold": Rubik_700Bold,
   });
 
   return {

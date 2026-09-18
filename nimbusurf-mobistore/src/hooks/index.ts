@@ -1,4 +1,3 @@
-export * from "./useAppFonts";
 export * from "./useAsyncStorage";
 export * from "./useDebounce";
 export * from "./useFetch";

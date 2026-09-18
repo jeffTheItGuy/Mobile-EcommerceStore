@@ -1,21 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
-
 import {
   API_CLOTHES,
   API_AVAILABLE_CLOTHES,
   API_SETTING,
 } from "../../../constants";
+import { TrendingData } from "../../../data";
 
-import { TrendingDummyData } from "../../../data";
-
-export type TrendingShoe = {
+export type TrendingProduct = {
   id: number;
   name: string;
   img: any;
   bgColor: string;
   type: string;
   price: string;
-  sizes: number[];
+  discount?: string;
 };
 
 export type HomeProduct = {
@@ -27,7 +25,7 @@ export type HomeProduct = {
 };
 
 type HomeDataState = {
-  trending: TrendingShoe[];
+  trending: TrendingProduct[];
   trendingClothes: HomeProduct[];
   recentlyViewed: HomeProduct[];
   isLoading: boolean;
@@ -38,13 +36,12 @@ const toArray = (data: unknown): HomeProduct[] => {
   if (Array.isArray(data)) {
     return data as HomeProduct[];
   }
-
   return [];
 };
 
 export function useHomeData() {
   const [state, setState] = useState<HomeDataState>({
-    trending: TrendingDummyData as TrendingShoe[],
+    trending: TrendingData as TrendingProduct[],
     trendingClothes: [],
     recentlyViewed: [],
     isLoading: true,
@@ -65,21 +62,18 @@ export function useHomeData() {
             if (!response.ok) {
               throw new Error("Failed to load trending clothes");
             }
-
             return response.json();
           }),
-
           fetch(API_AVAILABLE_CLOTHES, API_SETTING).then((response) => {
             if (!response.ok) {
               throw new Error("Failed to load recently viewed items");
             }
-
             return response.json();
           }),
         ]);
 
       setState({
-        trending: TrendingDummyData as TrendingShoe[],
+        trending: TrendingData as TrendingProduct[],
         trendingClothes: toArray(trendingClothesResponse),
         recentlyViewed: toArray(recentlyViewedResponse),
         isLoading: false,

@@ -4,7 +4,9 @@ A clean, modern e-commerce mobile app built with React Native and Expo. Browse p
 
 <p align="center">
   <img src="screenshots/screenshot-1.png" width="220" alt="Home Screen" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="screenshots/screenshot-2.png" width="220" alt="Product Detail" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="screenshots/screenshot-3.png" width="220" alt="Cart Screen" />
 </p>
 
@@ -12,7 +14,7 @@ A clean, modern e-commerce mobile app built with React Native and Expo. Browse p
 
 ## About
 
-Nimbusurf Mobi Store is a sample shopping app that demonstrates a full e-commerce flow: product browsing, category filtering, cart management, wishlist, address selection, and checkout. It ships with local sample data out of the box, so it runs instantly without any backend setup.
+Nimbusurf Mobi Store is a shopping app that demonstrates a full e-commerce flow: product browsing, category filtering, cart management, wishlist, address selection, and checkout.
 
 ---
 

@@ -1,10 +1,8 @@
+// src/features/auth/components/PhoneInput.tsx
+
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import { phoneConfig } from "../../../config/phone.config";
 
 type PhoneInputProps = {
   value: string;
@@ -21,8 +19,7 @@ export default function PhoneInput({
 }: PhoneInputProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.prefix}>+91</Text>
-
+      <Text style={styles.prefix}>{phoneConfig.dialCode}</Text>
       <TextInput
         style={styles.input}
         value={value}
@@ -30,7 +27,7 @@ export default function PhoneInput({
         placeholder={placeholder}
         placeholderTextColor="#94A3B8"
         keyboardType="number-pad"
-        maxLength={10}
+        maxLength={phoneConfig.phoneLength}
         editable={editable}
         returnKeyType="done"
       />
@@ -49,14 +46,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     height: 52,
   },
-
   prefix: {
     fontSize: 15,
     fontWeight: "600",
     color: "#0F172A",
     marginRight: 8,
   },
-
   input: {
     flex: 1,
     fontSize: 15,

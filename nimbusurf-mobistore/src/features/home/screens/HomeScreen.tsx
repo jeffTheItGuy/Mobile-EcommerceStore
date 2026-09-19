@@ -80,7 +80,7 @@ export default function HomeScreen() {
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Nimbusurf Store</Text>
           <Text style={styles.headerSubtitle}>
-            Discover premium fashion drops
+            Best value store
           </Text>
         </View>
 

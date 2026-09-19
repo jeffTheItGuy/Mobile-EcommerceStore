@@ -1,3 +1,5 @@
+// src/features/auth/screens/LoginScreen.tsx
+
 import React from "react";
 import {
   ActivityIndicator,
@@ -14,9 +16,19 @@ import { useNavigation } from "@react-navigation/native";
 import PhoneInput from "../components/PhoneInput";
 import OtpInput from "../components/OtpInput";
 import { useLogin } from "../hooks/useLogin";
+import { useAuthStore, useAuthHydration } from "../../../stores/authStore";
+import { AUTH_PROVIDER } from "../../../config/auth.config";
 
 export default function LoginScreen() {
   const navigation = useNavigation<any>();
+
+  // Hydrate auth state on mount (restores session if user was logged in)
+  useAuthHydration();
+
+  const isAuthenticated = useAuthStore(
+    (state) => state.isAuthenticated
+  );
+
   const {
     phone,
     otp,
@@ -29,6 +41,13 @@ export default function LoginScreen() {
     resendOtp,
   } = useLogin();
 
+  // If already authenticated, skip login
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigation.navigate("HomePage");
+    }
+  }, [isAuthenticated, navigation]);
+
   const handleContinue = async () => {
     if (!otpSent) {
       await sendOtp();
@@ -37,7 +56,8 @@ export default function LoginScreen() {
 
     const success = await verifyOtp();
     if (success) {
-      // Navigate to the Drawer's Home route
+      // Auth state is already updated by authStore.loginWithOtp()
+      // Navigate to the main app
       navigation.navigate("HomePage");
     }
   };
@@ -60,6 +80,11 @@ export default function LoginScreen() {
             <Text style={styles.subtitle}>
               Login or signup using your mobile number.
             </Text>
+            {AUTH_PROVIDER === "mock" ? (
+              <Text style={styles.mockBadge}>
+                Demo mode — any 6-digit OTP works
+              </Text>
+            ) : null}
           </View>
 
           <View style={styles.form}>
@@ -73,10 +98,7 @@ export default function LoginScreen() {
             {otpSent ? (
               <View style={styles.otpSection}>
                 <Text style={styles.label}>Enter OTP</Text>
-                <OtpInput
-                  value={otp}
-                  onChange={setOtp}
-                />
+                <OtpInput value={otp} onChange={setOtp} />
                 <Pressable
                   style={styles.resendButton}
                   onPress={resendOtp}
@@ -137,6 +159,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#64748B",
     lineHeight: 20,
+  },
+  mockBadge: {
+    marginTop: 8,
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#D97706",
+    backgroundColor: "#FEF3C7",
+    alignSelf: "flex-start",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+    overflow: "hidden",
   },
   form: {
     gap: 12,

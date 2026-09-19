@@ -8,6 +8,7 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
+import { resolveImage } from "../../constants/images";
 
 type ProductCardProduct = {
   id: string | number;
@@ -48,7 +49,7 @@ export default function ProductCard({
       ]}
     >
       <Image
-        source={{ uri: product.img }}
+        source={resolveImage(product.img)}
         style={styles.image}
         resizeMode="cover"
       />

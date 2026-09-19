@@ -10,7 +10,7 @@ export default function LoadingView({
 }: LoadingViewProps) {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color="#7C3AED" />
+      <ActivityIndicator size="large" color="#4F46E5" />
       <Text style={styles.message}>{message}</Text>
     </View>
   );
@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F8FAFC",
+    backgroundColor: "#F6F4F1",
     padding: 24,
   },
   message: {
     marginTop: 12,
     fontSize: 14,
-    color: "#64748B",
+    color: "#6B7280",
   },
 });

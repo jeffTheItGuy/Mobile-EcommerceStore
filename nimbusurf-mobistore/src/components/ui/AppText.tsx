@@ -8,7 +8,7 @@ type AppTextProps = TextProps & {
 
 export default function AppText({
   variant = "body",
-  color = "#0F172A",
+  color = "#121212",
   style,
   children,
   ...props
@@ -35,7 +35,7 @@ export default function AppText({
 const styles = StyleSheet.create({
   base: {
     fontSize: 14,
-    color: "#0F172A",
+    color: "#121212",
   },
   title: {
     fontSize: 26,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "500",
     lineHeight: 16,
-    color: "#64748B",
+    color: "#6B7280",
   },
   price: {
     fontSize: 16,

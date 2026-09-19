@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { resolveImage } from "../../../constants/images";
 
 import { COLORS, SIZES } from "../../../constants";
 
@@ -11,7 +12,7 @@ export default function ProductGallery({ img }: ProductGalleryProps) {
   return (
     <View style={styles.galleryContainer}>
       <Image
-        source={{ uri: img }}
+        source={resolveImage(img)}
         resizeMode="contain"
         style={styles.galleryImage}
       />

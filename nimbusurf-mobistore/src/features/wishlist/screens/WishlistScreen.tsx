@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { resolveImage } from "../../../constants/images";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -71,7 +72,7 @@ export default function WishlistScreen() {
             </Pressable>
             <View style={styles.imageWrapper}>
               <Image
-                source={{ uri: item.img }}
+                source={resolveImage(item.img)}
                 resizeMode="contain"
                 style={styles.productImage}
               />

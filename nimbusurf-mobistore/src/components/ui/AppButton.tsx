@@ -30,12 +30,12 @@ export default function AppButton({
   const isDanger = variant === "danger";
 
   const backgroundColor = isPrimary
-    ? "#7C3AED"
+    ? "#4F46E5"
     : isDanger
-    ? "#EF4444"
+    ? "#E11D48"
     : "#FFFFFF";
 
-  const textColor = isOutline ? "#7C3AED" : "#FFFFFF";
+  const textColor = isOutline ? "#4F46E5" : "#FFFFFF";
 
   return (
     <Pressable
@@ -45,7 +45,7 @@ export default function AppButton({
         styles.button,
         {
           backgroundColor,
-          borderColor: isOutline ? "#7C3AED" : "transparent",
+          borderColor: isOutline ? "#4F46E5" : "transparent",
           borderWidth: isOutline ? 1 : 0,
           opacity: disabled || loading ? 0.6 : pressed ? 0.92 : 1,
         },
@@ -64,7 +64,7 @@ export default function AppButton({
 const styles = StyleSheet.create({
   button: {
     minHeight: 50,
-    borderRadius: 16,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,

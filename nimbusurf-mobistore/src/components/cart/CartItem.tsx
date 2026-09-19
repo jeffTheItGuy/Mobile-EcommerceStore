@@ -8,6 +8,7 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
+import { resolveImage } from "../../constants/images";
 
 type CartItemProduct = {
   id: string | number;
@@ -44,7 +45,7 @@ export default function CartItem({
   return (
     <View style={[styles.item, style]}>
       <Image
-        source={{ uri: item.img }}
+        source={resolveImage(item.img)}
         style={styles.image}
         resizeMode="contain"
       />

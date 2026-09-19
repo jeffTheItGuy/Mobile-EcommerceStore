@@ -20,7 +20,7 @@ export default function AppImage({
   source,
   containerStyle,
   imageStyle,
-  borderRadius = 16,
+  borderRadius = 20,
   resizeMode = "cover",
 }: AppImageProps) {
   return (
@@ -29,7 +29,7 @@ export default function AppImage({
         {
           borderRadius,
           overflow: "hidden",
-          backgroundColor: "#F1F5F9",
+          backgroundColor: "#EFEDE8",
         },
         containerStyle,
       ]}

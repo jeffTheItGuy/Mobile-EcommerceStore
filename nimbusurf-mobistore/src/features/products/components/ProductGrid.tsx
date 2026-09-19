@@ -8,6 +8,7 @@ import {
   View,
   TextStyle,
 } from "react-native";
+import { resolveImage } from "../../../constants/images";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../../constants";
 import type { Product } from "../../../types/product";
@@ -39,7 +40,7 @@ function ProductGridItem({
 
       <View style={styles.imageWrapper}>
         <Image
-          source={{ uri: item.img }}
+          source={resolveImage(item.img)}
           resizeMode="contain"
           style={styles.productImage}
         />

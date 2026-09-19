@@ -8,11 +8,12 @@ import {
 
 import type { Product } from "../types";
 
+// src/services/api/productsApi.ts  (only this block changes)
 const fallbackProducts: Product[] = [
   {
     id: "1",
     name: "Rangriti Blue Printed A-Line Dress",
-    img: "https://img.tatacliq.com/images/i6/437Wx649H/MP000000007288363_437Wx649H_20200716044236.jpeg",
+    img: "fallback_1",
     type: "women",
     price: 1079,
     brand: "Rangriti",
@@ -21,7 +22,7 @@ const fallbackProducts: Product[] = [
   {
     id: "2",
     name: "GAP Purple Full Length Shirt Dress",
-    img: "https://img.tatacliq.com/images/i7/437Wx649H/MP000000009096587_437Wx649H_202103170225581.jpeg",
+    img: "fallback_2",
     type: "women",
     price: 2098,
     brand: "GAP",
@@ -30,7 +31,7 @@ const fallbackProducts: Product[] = [
   {
     id: "3",
     name: "PlusS Mustard Floral Print Dress",
-    img: "https://img.tatacliq.com/images/i6/437Wx649H/MP000000005559578_437Wx649H_20200122195119.jpeg",
+    img: "fallback_3",
     type: "women",
     price: 809,
     brand: "PlusS",
@@ -39,7 +40,7 @@ const fallbackProducts: Product[] = [
   {
     id: "4",
     name: "PlusS Yellow Printed Below Knee Dress",
-    img: "https://img.tatacliq.com/images/i3/437Wx649H/MP000000004774937_437Wx649H_20190512205828.jpeg",
+    img: "fallback_4",
     type: "women",
     price: 689,
     brand: "PlusS",

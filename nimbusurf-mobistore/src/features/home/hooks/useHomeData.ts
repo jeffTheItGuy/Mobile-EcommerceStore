@@ -1,10 +1,7 @@
+// src/features/home/hooks/useHomeData.ts
 import { useCallback, useEffect, useState } from "react";
-import {
-  API_CLOTHES,
-  API_AVAILABLE_CLOTHES,
-  API_SETTING,
-} from "../../../constants";
-import { TrendingData } from "../../../data";
+import { ProductsData, TrendingData } from "../../../data";
+import type { Product } from "../../../types/product";
 
 export type TrendingProduct = {
   id: number;
@@ -17,11 +14,13 @@ export type TrendingProduct = {
 };
 
 export type HomeProduct = {
-  id: number;
+  id: number | string;
   name: string;
   img: string;
   type?: string;
   price?: number | string;
+  brand?: string;
+  offer?: string;
 };
 
 type HomeDataState = {
@@ -32,12 +31,15 @@ type HomeDataState = {
   error: string | null;
 };
 
-const toArray = (data: unknown): HomeProduct[] => {
-  if (Array.isArray(data)) {
-    return data as HomeProduct[];
-  }
-  return [];
-};
+const toHomeProduct = (product: Product): HomeProduct => ({
+  id: product.id,
+  name: product.name,
+  img: product.img,
+  type: product.type,
+  price: product.price,
+  brand: product.brand_name ?? product.brand,
+  offer: product.offer,
+});
 
 export function useHomeData() {
   const [state, setState] = useState<HomeDataState>({
@@ -56,26 +58,18 @@ export function useHomeData() {
     }));
 
     try {
-      const [trendingClothesResponse, recentlyViewedResponse] =
-        await Promise.all([
-          fetch(API_CLOTHES, API_SETTING).then((response) => {
-            if (!response.ok) {
-              throw new Error("Failed to load trending clothes");
-            }
-            return response.json();
-          }),
-          fetch(API_AVAILABLE_CLOTHES, API_SETTING).then((response) => {
-            if (!response.ok) {
-              throw new Error("Failed to load recently viewed items");
-            }
-            return response.json();
-          }),
-        ]);
+      // Small delay keeps the existing loading UX; no network calls anymore.
+      await new Promise((resolve) => setTimeout(resolve, 250));
 
       setState({
         trending: TrendingData as TrendingProduct[],
-        trendingClothes: toArray(trendingClothesResponse),
-        recentlyViewed: toArray(recentlyViewedResponse),
+        trendingClothes: ProductsData.filter(
+          (product) => product.type === "apparel"
+        ).map(toHomeProduct),
+        recentlyViewed: ProductsData.filter(
+          (product) =>
+            product.type === "home-living" || product.type === "deals"
+        ).map(toHomeProduct),
         isLoading: false,
         error: null,
       });

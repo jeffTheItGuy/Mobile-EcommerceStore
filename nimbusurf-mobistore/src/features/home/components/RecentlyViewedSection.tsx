@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { resolveImage } from "../../../constants/images";
 import { COLORS, SIZES } from "../../../constants";
 import type { HomeProduct } from "../hooks/useHomeData";
 
@@ -50,7 +51,7 @@ function RecentlyViewedRow({
     >
       <View style={styles.imageWrapper}>
         <Image
-          source={{ uri: item.img }}
+          source={resolveImage(item.img)}
           resizeMode="contain"
           style={styles.image}
         />

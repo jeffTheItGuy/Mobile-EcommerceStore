@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { resolveImage } from "../../../constants/images";
 import type { CartItem } from "../../../stores/types";
 import { formatCurrency } from "../hooks/useCart";
 
@@ -39,7 +40,7 @@ export default function CartItemList({
         <View key={item.id} style={styles.card}>
           <View style={styles.imageWrapper}>
             <Image
-              source={{ uri: item.img }}
+              source={resolveImage(item.img)}
               resizeMode="contain"
               style={styles.image}
             />

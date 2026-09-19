@@ -43,7 +43,7 @@ export default function Screen({
 const styles = {
   safeArea: {
     flex: 1,
-    backgroundColor: "#F8FAFC",
+    backgroundColor: "#F6F4F1",
   },
   container: {
     flex: 1,

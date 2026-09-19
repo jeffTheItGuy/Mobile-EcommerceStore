@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { resolveImage } from "../../../constants/images";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLORS, FONTS, SIZES } from "../../../constants";
 import type { Category } from "../../../types/category";
@@ -27,7 +28,7 @@ function CategoryItem({
     <TouchableOpacity onPress={onPress} style={styles.itemContainer}>
       <View style={styles.itemRow}>
         <Image
-          source={{ uri: item.img }}
+          source={resolveImage(item.img)}
           style={styles.thumbnail}
           resizeMode="cover"
         />

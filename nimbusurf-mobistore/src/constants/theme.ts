@@ -3,21 +3,21 @@ import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 export const COLORS = {
-  primary: "#00509d",
-  black: "#0B0B0B",
+  primary: "#4F46E5",
+  black: "#121212",
   white: "#FFFFFF",
-  gray: "#64748B",
-  lightGray: "#F8FAFC",
-  light2: "#CBD5E1",
-  border: "#EDF2F7",
-  success: "#00964D",
-  danger: "#B91C1C",
-  cat_title_color: "#0B0B0B",
+  gray: "#6B7280",
+  lightGray: "#F6F4F1",
+  light2: "#D6D3CD",
+  border: "#E8E6E1",
+  success: "#16A34A",
+  danger: "#E11D48",
+  cat_title_color: "#121212",
 };
 
 export const SIZES = {
   base: 8,
-  radius: 14,
+  radius: 20,
   padding: 24,
   width,
   height,

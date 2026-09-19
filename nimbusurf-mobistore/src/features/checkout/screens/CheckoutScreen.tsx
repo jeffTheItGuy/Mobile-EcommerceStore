@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { resolveImage } from "../../../constants/images";
 import { useNavigation } from "@react-navigation/native";
 import { useCart } from "../../cart/hooks/useCart";
 import { useAddressStore } from "../../../stores/addressStore";
@@ -116,7 +117,7 @@ export default function CheckoutScreen() {
         {items.map((item) => (
           <View key={item.id} style={styles.itemRow}>
             <Image
-              source={{ uri: item.img }}
+              source={resolveImage(item.img)}
               style={styles.itemImage}
               resizeMode="contain"
             />

@@ -8,6 +8,7 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
+import { resolveImage } from "../../constants/images";
 
 type ProductListItemProduct = {
   id: string | number;
@@ -47,7 +48,7 @@ export default function ProductListItem({
       ]}
     >
       <Image
-        source={{ uri: product.img }}
+        source={resolveImage(product.img)}
         style={styles.image}
         resizeMode="contain"
       />

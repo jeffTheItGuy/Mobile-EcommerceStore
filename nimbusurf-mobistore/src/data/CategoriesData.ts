@@ -1,10 +1,11 @@
+// src/data/CategoriesData.ts
 import type { Category } from "../types/category";
 
 export const CategoriesData: Category[] = [
   {
     id: "electronics",
     name: "Electronics",
-    img: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=300&fit=crop&q=80",
+    img: "category_electronics",
     subcategories: [
       { id: "phones", name: "Phones & Accessories" },
       { id: "computers", name: "Computers" },
@@ -15,7 +16,7 @@ export const CategoriesData: Category[] = [
   {
     id: "apparel",
     name: "Apparel & Fashion",
-    img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&q=80",
+    img: "category_apparel",
     subcategories: [
       { id: "mens-clothing", name: "Men's Clothing" },
       { id: "womens-clothing", name: "Women's Clothing" },
@@ -26,7 +27,7 @@ export const CategoriesData: Category[] = [
   {
     id: "home-living",
     name: "Home & Living",
-    img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop&q=80",
+    img: "category_home_living",
     subcategories: [
       { id: "furniture", name: "Furniture" },
       { id: "kitchenware", name: "Kitchenware" },
@@ -37,7 +38,7 @@ export const CategoriesData: Category[] = [
   {
     id: "health-beauty",
     name: "Health & Beauty",
-    img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=300&fit=crop&q=80",
+    img: "category_health_beauty",
     subcategories: [
       { id: "skincare", name: "Skincare" },
       { id: "makeup", name: "Makeup" },
@@ -48,7 +49,7 @@ export const CategoriesData: Category[] = [
   {
     id: "sports-outdoors",
     name: "Sports & Outdoors",
-    img: "https://images.unsplash.com/photo-1461896836934-bd45ba24e304?w=400&h=300&fit=crop&q=80",
+    img: "category_sports_outdoors",
     subcategories: [
       { id: "fitness-equipment", name: "Fitness Equipment" },
       { id: "camping-hiking", name: "Camping & Hiking" },
@@ -58,7 +59,7 @@ export const CategoriesData: Category[] = [
   {
     id: "deals",
     name: "Deals & Clearance",
-    img: "https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=400&h=300&fit=crop&q=80",
+    img: "category_deals",
     subcategories: [
       { id: "price-drops", name: "Price Drops" },
       { id: "bundles", name: "Bundles" },

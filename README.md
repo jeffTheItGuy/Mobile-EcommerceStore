@@ -5,9 +5,9 @@ A clean, modern e-commerce mobile app built with React Native and Expo. Browse p
 <p align="center">
   <img src="screenshots/screenshot-1.png" width="220" alt="Home Screen" />
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="screenshots/screenshot-2.png" width="220" alt="Product Detail" />
+  <img src="screenshots/screenshot-2.png" width="220" alt="Catergories" />
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="screenshots/screenshot-3.png" width="220" alt="Cart Screen" />
+  <img src="screenshots/screenshot-3.png" width="220" alt="Product Detail" />
 </p>
 
 ---
